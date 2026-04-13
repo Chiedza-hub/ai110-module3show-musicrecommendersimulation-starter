@@ -64,6 +64,10 @@ pytest
 
 You can add more tests in `tests/test_recommender.py`.
 
+## Example Output
+
+![Terminal output](terminal_output%20screenshot.png)
+
 ---
 
 ## Experiments You Tried
@@ -116,7 +120,7 @@ Combines reflection and model card framing from the Module 3 guidance. :contentR
 Give your recommender a name, for example:
 
 > VibeFinder 1.0
-
+- BeatSearch
 ---
 
 ## 2. Intended Use
@@ -141,7 +145,7 @@ Describe your scoring logic in plain language.
 Try to avoid code in this section, treat it like an explanation to a non programmer.
 
 My recommender will use content-based filtering. It will suggest movies based on the cosine similarity of the song vector and user profile vector. To calculate the final score, I will add a genre match boost of +2 and a mood match boost of +1 and an acousticness match -range of +/- 0.1- boost of +1.
- 
+
 For ranking, I will sort the recommended songs in decending order and choose the top k songs.
 
 Features for song 
