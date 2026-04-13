@@ -140,6 +140,14 @@ Describe your scoring logic in plain language.
 
 Try to avoid code in this section, treat it like an explanation to a non programmer.
 
+My recommender will use content-based filtering. It will suggest movies based on the cosine similarity of the song vector and user profile vector. To calculate the final score, I will add a genre boost and a mood_boost. 
+For ranking, I will sort the recommended songs in decending order and choose the top k songs.
+
+Features for song 
+genre, mood, energy, valence, danceability, acousticness, tempo_bpm
+
+Features for UserProfile
+favourite_genre, favourite_mood, target_energy, likes_acoustic
 ---
 
 ## 4. Data
