@@ -1,4 +1,5 @@
 import math
+import dataclasses
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
@@ -39,12 +40,26 @@ class Recommender:
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
-        return self.songs[:k]
+        user_prefs = {
+            "genre": user.favorite_genre,
+            "mood": user.favorite_mood,
+            "energy": user.target_energy,
+            "acousticness": 0.8 if user.likes_acoustic else 0.2,
+        }
+        song_dicts = [dataclasses.asdict(s) for s in self.songs]
+        results = recommend_songs(user_prefs, song_dicts, k)
+        song_by_id = {s.id: s for s in self.songs}
+        return [song_by_id[r[0]["id"]] for r in results]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        user_prefs = {
+            "genre": user.favorite_genre,
+            "mood": user.favorite_mood,
+            "energy": user.target_energy,
+            "acousticness": 0.8 if user.likes_acoustic else 0.2,
+        }
+        _, explanation = score_song(user_prefs, dataclasses.asdict(song))
+        return explanation
 
 def load_songs(csv_path: str) -> List[Dict]:
     """
