@@ -111,8 +111,8 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
     reasons = [f"cosine similarity ({sim:.2f})"]
 
     if song.get("genre") == user_prefs.get("genre"):
-        score += 2.0
-        reasons.append("genre match (+2.0)")
+        score += 4.0  # TEMP: increased from 2.0 for testing
+        reasons.append("genre match (+4.0)")
 
     if song.get("mood") == user_prefs.get("mood"):
         score += 1.0
